@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HOANGGIA — PROMPT NỘI THẤT</title>
+<meta name="description" content="HOANGGIA — Đạo diễn Prompt Nội thất: phân tích không gian, đạo diễn góc máy và tạo prompt nội thất chuyên nghiệp.">
+<style>
+:root{
+  --bg:#f6f6f4;--panel:#fff;--ink:#151515;--muted:#777;--line:#e6e4df;
+  --accent:#171717;--soft:#efeee9;--ok:#52715d;--shadow:0 12px 35px rgba(0,0,0,.06);
+  --radius:18px;
+}
+*{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+button,input,textarea,select{font:inherit} button{cursor:pointer}
+.app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;background:#171717;color:#fff;padding:26px 18px;display:flex;flex-direction:column}
+.brand{padding:5px 10px 28px}.brand .name{font-size:21px;font-weight:800;letter-spacing:.08em}.brand .sub{font-size:10px;letter-spacing:.22em;color:#aaa;margin-top:7px}
+.nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:#aaa;text-align:left;padding:12px 12px;border-radius:10px}.nav button.active,.nav button:hover{background:#282828;color:#fff}
+.side-note{margin-top:auto;padding:14px 10px;color:#777;font-size:11px;line-height:1.6}
+.main{min-width:0}.topbar{height:68px;border-bottom:1px solid var(--line);background:rgba(246,246,244,.9);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:5}
+.status{font-size:12px;color:var(--muted)}.status b{color:var(--ok)}
+.container{max-width:1280px;margin:auto;padding:38px 34px 70px}
+.hero{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:28px}.eyebrow{font-size:11px;letter-spacing:.18em;color:#8b8881;text-transform:uppercase}.hero h1{font-family:Georgia,serif;font-weight:500;font-size:48px;line-height:1;margin:8px 0 10px}.hero p{color:var(--muted);max-width:650px;margin:0;line-height:1.6}.pill{border:1px solid var(--line);padding:9px 12px;border-radius:999px;background:#fff;font-size:11px}
+.grid{display:grid;grid-template-columns:1.08fr .92fr;gap:20px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}.card h2{font-size:15px;margin:0 0 17px}.section-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#999;margin:20px 0 9px}
+textarea{width:100%;min-height:155px;border:1px solid var(--line);border-radius:12px;padding:15px;resize:vertical;outline:none;background:#fcfcfb;line-height:1.55}textarea:focus,input:focus,select:focus{border-color:#999}
+.controls{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.control{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fcfcfb}.control label{display:block;font-size:10px;color:#999;margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em}.control select,.control input{border:0;background:transparent;outline:0;width:100%;color:#222}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.btn{border:1px solid #ddd;background:#fff;border-radius:10px;padding:10px 14px;font-weight:600;font-size:12px}.btn.primary{background:#171717;color:#fff;border-color:#171717}.btn:hover{transform:translateY(-1px)}
+.analysis{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.metric{border:1px solid var(--line);border-radius:12px;padding:12px}.metric .k{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.08em}.metric .v{font-size:13px;margin-top:6px;font-weight:650;line-height:1.4}
+.prompt{min-height:315px;background:#161616;color:#f5f3ee;border-radius:14px;padding:18px;line-height:1.65;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;white-space:pre-wrap;overflow:auto}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.mini{font-size:11px;color:#999}.tags{display:flex;gap:7px;flex-wrap:wrap}.tag{background:var(--soft);border-radius:999px;padding:6px 9px;font-size:10px}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.shot{border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer}.shot:hover,.shot.selected{border-color:#222;background:#faf9f6}.shot b{display:block;font-size:12px}.shot span{font-size:10px;color:#888;display:block;margin-top:5px;line-height:1.4}
+.drop{border:1px dashed #cfcac1;border-radius:13px;padding:20px;text-align:center;color:#999;font-size:11px;background:#fbfaf7}.drop input{display:none}
+.toast{position:fixed;right:22px;bottom:22px;background:#171717;color:#fff;padding:11px 14px;border-radius:10px;font-size:12px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}
+.footer{margin-top:20px;color:#999;font-size:10px;text-align:center}
+@media(max-width:980px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.nav{grid-template-columns:repeat(4,1fr)}.side-note{display:none}.grid{grid-template-columns:1fr}.topbar{padding:0 18px}.container{padding:25px 18px 50px}}
+@media(max-width:620px){.hero{display:block}.hero h1{font-size:38px}.controls,.analysis{grid-template-columns:1fr}.shots{grid-template-columns:1fr}.nav{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="name">HOANGGIA</div><div class="sub">PROMPT NỘI THẤT</div></div>
+  <nav class="nav">
+    <button class="active" data-tab="director">01 · Đạo diễn</button>
+    <button data-tab="camera">02 · Góc máy</button>
+    <button data-tab="lighting">03 · Ánh sáng</button>
+    <button data-tab="library">04 · Thư viện Prompt</button>
+  </nav>
+  <div class="side-note">NHÌN KHÔNG GIAN.<br>ĐẠO DIỄN GÓC MÁY.<br>KIẾN TẠO HÌNH ẢNH.</div>
+</aside>
+
+<main class="main">
+  <header class="topbar"><span class="status">BỘ MÁY HOÀNG GIA <b>● SẴN SÀNG</b></span><span class="pill">Phiên bản một tệp · v1.0</span></header>
+  <div class="container">
+    <section class="hero">
+      <div><div class="eyebrow">Nhiếp ảnh nội thất & trực quan hóa kiến trúc</div><h1>Đạo diễn Prompt.</h1><p>Phân tích không gian trước khi viết prompt. Xác định câu chuyện, góc máy, ống kính, ánh sáng, vật liệu và cách bài trí như một đạo diễn hình ảnh nội thất.</p></div>
+      <span class="pill">KHÔNG GIAN → GÓC MÁY → ÁNH SÁNG → PROMPT</span>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <div class="row"><h2>01 — Mô tả không gian</h2><span class="mini">Mô tả bằng ngôn ngữ tự nhiên</span></div>
+        <textarea id="brief" placeholder="Ví dụ: Phòng khách căn hộ cao cấp, phong cách tối giản ấm áp, đá travertine, gỗ óc chó, sofa màu kem, cửa kính lớn nhìn ra cây xanh. Muốn hình ảnh sang trọng, tự nhiên và có chiều sâu.">Phòng khách căn hộ cao cấp, warm minimalism. Tường TV ốp đá travertine sáng, sàn gỗ óc chó, sofa vải màu kem, bàn trà đá, cửa kính lớn có cây xanh bên ngoài. Ánh sáng ban ngày mềm. Muốn một hero shot sang, tự nhiên, chân thực.</textarea>
+        <div class="section-label">Mục đích hình ảnh</div>
+        <div class="controls">
+          <div class="control"><label>Mục đích</label><select id="purpose"><option>Ảnh chủ đạo</option><option>Ảnh thiết lập không gian</option><option>Ảnh biên tập nội thất</option><option>Chi tiết vật liệu</option><option>Ảnh phong cách sống</option><option>Ảnh không khí</option></select></div>
+          <div class="control"><label>Nền tảng</label><select id="platform"><option>Lovart</option><option>ChatGPT Image</option><option>Midjourney</option><option>Flux</option><option>Generic</option></select></div>
+        </div>
+        <div class="section-label">Câu chuyện góc máy</div>
+        <div class="shots" id="shots">
+          <div class="shot selected" data-shot="Góc nhìn ba phần tư từ góc phòng"><b>Three-quarter</b><span>Kể toàn bộ không gian và chiều sâu.</span></div>
+          <div class="shot" data-shot="Góc nhìn theo trục kiến trúc"><b>Axial</b><span>Nhấn mạnh trục và kiến trúc.</span></div>
+          <div class="shot" data-shot="Góc nhìn chính diện"><b>Straight-on</b><span>Nhấn đối xứng và mảng tường điểm nhấn.</span></div>
+          <div class="shot" data-shot="Bố cục đường chéo"><b>Diagonal</b><span>Tạo đường dẫn thị giác.</span></div>
+          <div class="shot" data-shot="Cận cảnh chi tiết"><b>Detail</b><span>Vật liệu, nội thất và độ tinh xảo.</span></div>
+          <div class="shot" data-shot="Góc nghệ thuật xóa phông"><b>Shallow DOF</b><span>Phong cách biên tập, xóa phông nghệ thuật.</span></div>
+        </div>
+        <div class="section-label">Điều khiển đạo diễn</div>
+        <div class="controls">
+          <div class="control"><label>Ống kính</label><select id="lens"><option>24mm</option><option>28mm</option><option>35mm</option><option>50mm</option><option>85mm</option></select></div>
+          <div class="control"><label>Độ cao máy ảnh</label><select id="height"><option>Tầm mắt · 1,45 m</option><option>Thấp · 1,10 m</option><option>Cao · 1,70 m</option></select></div>
+          <div class="control"><label>Ánh sáng</label><select id="light"><option>Ánh sáng ban ngày tự nhiên, mềm</option><option>Ánh sáng xiên ấm buổi chiều</option><option>Ánh sáng khuếch tán dịu của trời nhiều mây</option><option>Ánh sáng định hướng điện ảnh</option><option>Ánh sáng đèn kiến trúc ấm</option></select></div>
+          <div class="control"><label>Mức độ chân thực</label><select id="realism"><option>Nhiếp ảnh kiến trúc chân thực cao</option><option>Nhiếp ảnh nội thất biên tập</option><option>Trực quan hóa kiến trúc cao cấp, chân thực</option><option>Chân thực điện ảnh</option></select></div>
+        </div>
+        <div class="actions"><button class="btn primary" id="generate">Tạo Prompt HOÀNG GIA</button><button class="btn" id="copy">Sao chép Prompt</button><button class="btn" id="clear">Đặt lại</button></div>
+      </section>
+
+      <section class="card">
+        <div class="row"><h2>02 — Phân tích của đạo diễn</h2><span class="mini">Thiết kế bởi HOÀNG GIA</span></div>
+        <div class="analysis">
+          <div class="metric"><div class="k">Không gian</div><div class="v" id="mKhông gian">Phòng khách · căn hộ cao cấp</div></div>
+          <div class="metric"><div class="k">Câu chuyện hình ảnh</div><div class="v" id="mStory">Điềm tĩnh, cao cấp, giàu tính kiến trúc</div></div>
+          <div class="metric"><div class="k">Bố cục</div><div class="v" id="mComp">Tiền cảnh → sofa → tường điểm nhấn → cây xanh</div></div>
+          <div class="metric"><div class="k">Phối cảnh</div><div class="v" id="mPersp">Góc rộng tự nhiên, kiểm soát đường thẳng đứng</div></div>
+          <div class="metric"><div class="k">Logic ánh sáng</div><div class="v" id="mLight">Ánh sáng ban ngày mềm từ bên</div></div>
+          <div class="metric"><div class="k">Vật liệu</div><div class="v" id="mVật liệu">Travertine · óc chó · vải linen</div></div>
+        </div>
+        <div class="section-label">Định hướng hình ảnh</div>
+        <div class="tags" id="tags"><span class="tag">Sang trọng tiết chế</span><span class="tag">Trung tính ấm</span><span class="tag">Chiều sâu không gian</span><span class="tag">Khuyết điểm tự nhiên</span></div>
+        <div class="section-label">Prompt hoàn chỉnh</div>
+        <div class="prompt" id="prompt"></div>
+        <div class="actions"><button class="btn" id="export">Xuất tệp .txt</button></div>
+      </section>
+    </div>
+
+    <div class="footer">HOANGGIA — PROMPT NỘI THẤT · Bản triển khai độc lập, lấy cảm hứng từ hành vi sản phẩm công khai; không sao chép mã nguồn.</div>
+  </div>
+</main>
+</div>
+<div class="toast" id="toast">Đã sao chép.</div>
+
+<script>
+const $=s=>document.querySelector(s);
+let selectedShot="Góc nhìn ba phần tư từ góc phòng";
+
+document.querySelectorAll(".shot").forEach(el=>el.addEventListener("click",()=>{
+  document.querySelectorAll(".shot").forEach(x=>x.classList.remove("selected"));
+  el.classList.add("selected"); selectedShot=el.dataset.shot; generate();
+}));
+document.querySelectorAll("select").forEach(el=>el.addEventListener("change",generate));
+
+function inferKhông gian(t){
+  t=t.toLowerCase();
+  if(t.includes("bedroom")||t.includes("phòng ngủ")) return "Bedroom · private interior";
+  if(t.includes("dining")||t.includes("phòng ăn")) return "Dining room · hospitality";
+  if(t.includes("kitchen")||t.includes("bếp")) return "Kitchen · residential interior";
+  if(t.includes("bath")||t.includes("wc")||t.includes("phòng tắm")) return "Bathroom · material-focused";
+  if(t.includes("office")||t.includes("văn phòng")) return "Office · workplace";
+  return "Phòng khách · căn hộ cao cấp";
+}
+function generate(){
+ const b=$("#brief").value.trim()||"premium contemporary interior";
+ const lens=$("#lens").value, height=$("#height").value, light=$("#light").value, realism=$("#realism").value, purpose=$("#purpose").value, platform=$("#platform").value;
+ const space=inferKhông gian(b);
+ $("#mKhông gian").textContent=space;
+ $("#mStory").textContent=purpose==="Ảnh chủ đạo"?"Điềm tĩnh, cao cấp, giàu tính kiến trúc":purpose==="Chi tiết vật liệu"?"Vật liệu-first, tactile, crafted":"Clear spatial narrative with controlled visual hierarchy";
+ $("#mComp").textContent=selectedShot.includes("Detail")?"Vật liệu / furniture detail → soft background":"Foreground → primary furniture → architectural focal point → background";
+ $("#mPersp").textContent=(lens==="24mm"||lens==="28mm")?"Góc rộng tự nhiên, kiểm soát đường thẳng đứng":"Natural editorial perspective, restrained distortion";
+ $("#mLight").textContent=light;
+ $("#mVật liệu").textContent=b.toLowerCase().includes("travertine")?"Travertine · óc chó · vải linen":"Specific tactile materials preserved from the brief";
+ const prompt=`HOÀNG GIA — ${purpose.toUpperCase()}
+
+TẠO HÌNH ẢNH
+Tạo một hình ảnh ${realism.toLowerCase()} cho ${space.toLowerCase()} được mô tả dưới đây.
+
+KHÔNG GIAN & KIẾN TRÚC
+${b}
+
+ĐỊNH HƯỚNG GÓC MÁY
+${selectedShot}, máy ảnh đặt ở ${height.toLowerCase()}, ống kính ${lens}, phối cảnh được kiểm soát, các đường thẳng đứng kiến trúc thẳng tự nhiên, tỷ lệ căn phòng chân thực, vị trí máy ảnh được lựa chọn để thể hiện mối quan hệ không gian thay vì phóng đại diện tích.
+
+BỐ CỤC
+Thiết lập rõ tiền cảnh, trung cảnh và hậu cảnh. Thành phần kiến trúc hoặc đồ nội thất chính phải có thứ bậc thị giác rõ ràng. Giữ khoảng thở hợp lý và đường dẫn thị giác tự nhiên. Tránh méo góc quá mức.
+
+ÁNH SÁNG
+${light}, chiếu sáng hợp lý theo vật lý, chuyển tiếp bóng mềm tự nhiên, phơi sáng cân bằng, phản xạ nhất quán, ánh sáng môi trường tinh tế, không phát sáng giả.
+
+VẬT LIỆU & BÀI TRÍ
+Vật liệu có tính xúc giác rõ ràng, thể hiện vi cấu trúc, độ nhám và độ phản xạ chân thực, có những bất toàn tự nhiên tinh tế. Bài trí tiết chế và phục vụ kiến trúc; không thêm đồ trang trí gây rối.
+
+ĐẶC TÍNH HÌNH ẢNH
+${realism}, chất lượng nhiếp ảnh kiến trúc cao cấp, màu sắc tự nhiên, chiều sâu chân thực, tương phản tinh tế, phản xạ đáng tin cậy, độ trung thực vật liệu cao, hậu kỳ tiết chế.
+
+CẦN TRÁNH
+tường bị cong hoặc méo, đường đứng bị uốn, tỷ lệ nội thất sai, đồ vật lơ lửng, đồ vật lặp lại, vật liệu nhựa giả, phản xạ giả, HDR quá mạnh, màu quá bão hòa, độ nét quá mức, hiệu ứng phát sáng, bóng đổ phi thực tế, bố cục quá nhiều đồ.
+
+GHI CHÚ NỀN TẢNG
+Được tối ưu dưới dạng chỉ dẫn hình ảnh rõ ràng cho ${platform}.`;
+
+ $("#prompt").textContent=prompt;
+}
+generate();
+
+$("#copy").addEventListener("click",async()=>{
+ try{await navigator.clipboard.writeText($("#prompt").textContent);toast("Đã sao chép Prompt.");}catch(e){toast("Không thể sao chép tự động.");}
+});
+$("#generate").addEventListener("click",()=>{generate();toast("HOÀNG GIA đã phân tích lại không gian.");});
+$("#clear").addEventListener("click",()=>{$("#brief").value="";generate();});
+$("#export").addEventListener("click",()=>{
+ const blob=new Blob([$("#prompt").textContent],{type:"text/plain;charset=utf-8"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="HOANGGIA-interior-prompt.txt";a.click();URL.revokeObjectURL(a.href);
+});
+function toast(t){const x=$("#toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),1800)}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>{
+ document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+ const tab=b.dataset.tab;
+ if(tab==="camera") toast("Camera Director: chọn góc máy ở Không gian brief.");
+ if(tab==="lighting") toast("Ánh sáng Director: điều khiển ánh sáng ở Điều khiển đạo diễn.");
+ if(tab==="library") toast("Thư viện Prompt đang sử dụng các mẫu có sẵn trong bộ máy.");
+ if(tab==="director") toast("Chế độ Đạo diễn đang hoạt động.");
+}));
+</script>
+</body>
+</html>
