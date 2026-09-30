@@ -5,42 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HOANGGIA AI Studio — Architecture × Interior × AI</title>
 <meta name="description" content="HOANGGIA AI Studio — AI creative workspace cho kiến trúc, nội thất và visual direction.">
-<style>
-:root{
-  --bg:#f6f6f4;--panel:#fff;--ink:#151515;--muted:#777;--line:#e6e4df;
-  --accent:#171717;--soft:#efeee9;--ok:#52715d;--shadow:0 12px 35px rgba(0,0,0,.06);
-  --radius:18px;
+<style>:root{
+--bg:#0b0b0a;--panel:#121210;--panel2:#171714;--ink:#f3f0e8;--muted:#8e8b83;--line:#292823;
+--gold:#c6a66a;--gold2:#e2c994;--green:#8fae91;--radius:14px;
 }
-*{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
-button,input,textarea,select{font:inherit} button{cursor:pointer}
-.app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
-.sidebar{position:sticky;top:0;height:100vh;background:#171717;color:#fff;padding:26px 18px;display:flex;flex-direction:column}
-.brand{padding:5px 10px 28px}.brand .name{font-size:21px;font-weight:800;letter-spacing:.08em}.brand .sub{font-size:10px;letter-spacing:.22em;color:#aaa;margin-top:7px}
-.nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:#aaa;text-align:left;padding:12px 12px;border-radius:10px}.nav button.active,.nav button:hover{background:#282828;color:#fff}
-.side-note{margin-top:auto;padding:14px 10px;color:#777;font-size:11px;line-height:1.6}
-.main{min-width:0}.topbar{height:68px;border-bottom:1px solid var(--line);background:rgba(246,246,244,.9);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:5}
-.status{font-size:12px;color:var(--muted)}.status b{color:var(--ok)}
-.container{max-width:1280px;margin:auto;padding:38px 34px 70px}
-.hero{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:28px}.eyebrow{font-size:11px;letter-spacing:.18em;color:#8b8881;text-transform:uppercase}.hero h1{font-family:Georgia,serif;font-weight:500;font-size:48px;line-height:1;margin:8px 0 10px}.hero p{color:var(--muted);max-width:650px;margin:0;line-height:1.6}.pill{border:1px solid var(--line);padding:9px 12px;border-radius:999px;background:#fff;font-size:11px}
-.grid{display:grid;grid-template-columns:1.08fr .92fr;gap:20px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}.card h2{font-size:15px;margin:0 0 17px}.section-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#999;margin:20px 0 9px}
-textarea{width:100%;min-height:155px;border:1px solid var(--line);border-radius:12px;padding:15px;resize:vertical;outline:none;background:#fcfcfb;line-height:1.55}textarea:focus,input:focus,select:focus{border-color:#999}
-.controls{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.control{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fcfcfb}.control label{display:block;font-size:10px;color:#999;margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em}.control select,.control input{border:0;background:transparent;outline:0;width:100%;color:#222}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.btn{border:1px solid #ddd;background:#fff;border-radius:10px;padding:10px 14px;font-weight:600;font-size:12px}.btn.primary{background:#171717;color:#fff;border-color:#171717}.btn:hover{transform:translateY(-1px)}
-.analysis{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.metric{border:1px solid var(--line);border-radius:12px;padding:12px}.metric .k{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.08em}.metric .v{font-size:13px;margin-top:6px;font-weight:650;line-height:1.4}
-.prompt{min-height:315px;background:#161616;color:#f5f3ee;border-radius:14px;padding:18px;line-height:1.65;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;white-space:pre-wrap;overflow:auto}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.mini{font-size:11px;color:#999}.tags{display:flex;gap:7px;flex-wrap:wrap}.tag{background:var(--soft);border-radius:999px;padding:6px 9px;font-size:10px}
-.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.shot{border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer}.shot:hover,.shot.selected{border-color:#222;background:#faf9f6}.shot b{display:block;font-size:12px}.shot span{font-size:10px;color:#888;display:block;margin-top:5px;line-height:1.4}
-.drop{border:1px dashed #cfcac1;border-radius:13px;padding:20px;text-align:center;color:#999;font-size:11px;background:#fbfaf7}.drop input{display:none}
-.toast{position:fixed;right:22px;bottom:22px;background:#171717;color:#fff;padding:11px 14px;border-radius:10px;font-size:12px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}
-.footer{margin-top:20px;color:#999;font-size:10px;text-align:center}
-@media(max-width:980px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.nav{grid-template-columns:repeat(4,1fr)}.side-note{display:none}.grid{grid-template-columns:1fr}.topbar{padding:0 18px}.container{padding:25px 18px 50px}}
-@media(max-width:620px){.hero{display:block}.hero h1{font-size:38px}.controls,.analysis{grid-template-columns:1fr}.shots{grid-template-columns:1fr}.nav{grid-template-columns:repeat(2,1fr)}}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+body{letter-spacing:-.01em}.app{display:grid;grid-template-columns:224px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;background:#090908;border-right:1px solid var(--line);padding:22px 14px;display:flex;flex-direction:column}
+.brand{padding:4px 12px 30px}.brandmark{width:34px;height:34px;border:1px solid #555148;display:grid;place-items:center;margin-bottom:15px;position:relative}.brandmark:before,.brandmark:after{content:"";position:absolute;background:var(--gold)}.brandmark:before{width:1px;height:20px}.brandmark:after{height:1px;width:20px}.brand .name{font-size:18px;font-weight:800;letter-spacing:.12em}.brand .sub{font-size:9px;letter-spacing:.2em;color:#77736a;margin-top:6px}
+.nav{display:grid;gap:3px}.nav button{border:1px solid transparent;background:transparent;color:#77746d;text-align:left;padding:12px 12px;border-radius:9px;font-size:11px;letter-spacing:.02em}.nav button.active,.nav button:hover{background:#171714;border-color:#292823;color:#eee}
+.side-note{margin-top:auto;padding:15px 12px;color:#57544e;font-size:9px;line-height:1.8;letter-spacing:.12em;border-top:1px solid var(--line)}
+.main{min-width:0}.topbar{height:62px;border-bottom:1px solid var(--line);background:rgba(11,11,10,.88);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;z-index:5}.status{font-size:9px;color:#716e66;letter-spacing:.13em}.status b{color:var(--green);font-weight:600}.pill{border:1px solid #34322d;padding:7px 10px;border-radius:999px;background:#11110f;font-size:9px;color:#a9a59b;letter-spacing:.1em}
+.container{max-width:1440px;margin:auto;padding:42px 42px 70px}.hero{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:30px}.eyebrow{font-size:9px;letter-spacing:.2em;color:#77736a;text-transform:uppercase}.hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:58px;line-height:.98;letter-spacing:-.04em;margin:10px 0 13px}.hero h1 span{font-style:italic}.hero p{color:#8d8980;max-width:650px;margin:0;line-height:1.65;font-size:13px}.hero>.pill{margin-bottom:5px;color:var(--gold);border-color:#4a402e}
+.grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);gap:14px}.card{background:linear-gradient(145deg,#151512,#11110f);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.18)}.card h2{font-size:11px;margin:0;letter-spacing:.12em;text-transform:uppercase}.section-label{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#68655e;margin:19px 0 8px}.mini{font-size:9px;color:#67645d}
+textarea{width:100%;min-height:142px;border:1px solid #2b2a25;border-radius:10px;padding:14px;resize:vertical;outline:none;background:#0d0d0b;color:#ddd9d0;line-height:1.55;font-size:12px}textarea:focus,input:focus,select:focus{border-color:#61583f;box-shadow:0 0 0 2px rgba(198,166,106,.06)}
+.controls{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.control{border:1px solid #292823;border-radius:9px;padding:9px 10px;background:#10100e}.control label{display:block;font-size:8px;color:#66635c;margin-bottom:5px;text-transform:uppercase;letter-spacing:.12em}.control select,.control input{border:0;background:transparent;outline:0;width:100%;color:#d6d2c9;font-size:11px}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.btn{border:1px solid #34322d;background:#171714;color:#c8c4bb;border-radius:8px;padding:9px 12px;font-weight:600;font-size:10px;letter-spacing:.02em}.btn.primary{background:var(--gold);color:#17130b;border-color:var(--gold)}.btn:hover{border-color:#6a604a;transform:translateY(-1px)}
+.analysis{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.metric{border:1px solid #292823;border-radius:9px;padding:10px;background:#10100e}.metric .k{font-size:8px;color:#66635c;text-transform:uppercase;letter-spacing:.12em}.metric .v{font-size:11px;color:#d4d0c7;margin-top:5px;font-weight:500;line-height:1.4}
+.prompt{min-height:315px;background:#090908;border:1px solid #292823;color:#d7d2c8;border-radius:10px;padding:15px;line-height:1.65;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;white-space:pre-wrap;overflow:auto}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.tags{display:flex;gap:5px;flex-wrap:wrap}.tag{background:#1b1a17;border:1px solid #292823;color:#8e8a81;border-radius:999px;padding:5px 8px;font-size:8px}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.shot{border:1px solid #292823;border-radius:9px;padding:10px;background:#10100e;cursor:pointer}.shot:hover,.shot.selected{border-color:#66583e;background:#181713}.shot b{display:block;font-size:10px;color:#c8c4bb}.shot span{font-size:8px;color:#66635c;display:block;margin-top:4px;line-height:1.4}.drop{border:1px dashed #39362f;border-radius:10px;padding:18px;text-align:center;color:#67645c;font-size:10px;background:#0f0f0d}.drop input{display:none}
+.module-grid{display:grid!important;grid-template-columns:repeat(6,1fr)!important}.module-grid .shot{min-height:86px}.module-grid .shot b{font-size:9px;color:#aaa69d}.module-grid .shot span{font-size:8px}
+.footer{margin-top:22px;color:#4d4a44;font-size:8px;text-align:center;letter-spacing:.18em}.toast{position:fixed;right:20px;bottom:20px;background:#e7dfcf;color:#17140e;padding:10px 13px;border-radius:8px;font-size:10px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}
+@media(max-width:1100px){.module-grid{grid-template-columns:repeat(3,1fr)!important}}@media(max-width:980px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line)}.nav{grid-template-columns:repeat(4,1fr)}.side-note{display:none}.grid{grid-template-columns:1fr}.topbar{padding:0 18px}.container{padding:28px 18px 50px}}@media(max-width:620px){.hero{display:block}.hero h1{font-size:43px}.hero>.pill{display:inline-block;margin-top:18px}.controls,.analysis{grid-template-columns:1fr}.shots,.module-grid{grid-template-columns:repeat(2,1fr)!important}.nav{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="name">HOANGGIA</div><div class="sub">AI CREATIVE STUDIO</div></div>
+  <div class="brand"><div class="brandmark" aria-hidden="true"></div><div class="name">HOANGGIA</div><div class="sub">AI CREATIVE STUDIO</div></div>
   <nav class="nav">
     <button class="active" data-tab="director">01 · Interior Director</button>
     <button data-tab="camera">02 · Camera Director</button>
@@ -104,7 +96,7 @@ textarea{width:100%;min-height:155px;border:1px solid var(--line);border-radius:
       </section>
     </div>
 
-    <section class="card" style="margin-top:20px"><div class="row"><h2>Studio Modules</h2><span class="mini">KIẾN TRÚC · NỘI THẤT · AI</span></div><div class="shots" style="margin-top:12px"><div class="shot"><b>◈ Image Director</b><span>Restyle · Edit · Preserve · Before / After</span></div><div class="shot"><b>⌖ Camera Director</b><span>Composition · Lens · Height · Perspective</span></div><div class="shot"><b>◇ Material Lab</b><span>Stone · Wood · Leather · Fabric · Metal</span></div><div class="shot"><b>☼ Lighting Lab</b><span>Daylight · Golden Hour · Cinematic</span></div><div class="shot"><b>▤ Prompt Library</b><span>Templates · Favorites · Projects · Versions</span></div><div class="shot"><b>✦ AI Backend</b><span>Vision · Image Generation · Image Editing · Workflow API</span></div></div></section><div class="footer">HOANGGIA AI STUDIO · ARCHITECTURE × INTERIOR × ARTIFICIAL INTELLIGENCE</div>
+    <section class="card" style="margin-top:20px"><div class="row"><h2>Studio Modules</h2><span class="mini">KIẾN TRÚC · NỘI THẤT · AI</span></div><div class="shots module-grid" style="margin-top:12px"><div class="shot"><b>◈ Image Director</b><span>Restyle · Edit · Preserve · Before / After</span></div><div class="shot"><b>⌖ Camera Director</b><span>Composition · Lens · Height · Perspective</span></div><div class="shot"><b>◇ Material Lab</b><span>Stone · Wood · Leather · Fabric · Metal</span></div><div class="shot"><b>☼ Lighting Lab</b><span>Daylight · Golden Hour · Cinematic</span></div><div class="shot"><b>▤ Prompt Library</b><span>Templates · Favorites · Projects · Versions</span></div><div class="shot"><b>✦ AI Backend</b><span>Vision · Image Generation · Image Editing · Workflow API</span></div></div></section><div class="footer">HOANGGIA AI STUDIO · ARCHITECTURE × INTERIOR × ARTIFICIAL INTELLIGENCE</div>
   </div>
 </main>
 </div>
