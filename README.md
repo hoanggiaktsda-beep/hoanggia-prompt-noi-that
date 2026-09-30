@@ -1,6 +1,24 @@
-# HOANGGIA — PROMPT NỘI THẤT
+# HOANGGIA AI Studio
 
-Công cụ tạo prompt chuyên nghiệp cho hình ảnh nội thất và kiến trúc.
+**Architecture × Interior × Artificial Intelligence**
+
+Creative workspace AI định hướng cho kiến trúc sư, nhà thiết kế nội thất và visual artists. Repo này phát triển trực tiếp từ HOANGGIA Prompt Nội Thất.
+
+## Studio Modules
+
+- Interior Director
+- Image Director
+- Camera Director
+- Material Lab
+- Lighting Lab
+- Prompt Library
+- AI Backend (API-ready)
+
+## Product principle
+
+**SEE → UNDERSTAND → DIRECT → GENERATE**
+
+HOANGGIA AI Studio không chỉ viết prompt; mục tiêu là trở thành creative operating system cho workflow kiến trúc và nội thất.
 
 ## Cấu trúc
 
@@ -51,9 +69,18 @@ https://TEN-GITHUB-CUA-BAN.github.io/hoanggia-prompt-noi-that/
 
 ## Lưu ý
 
-Phiên bản hiện tại là frontend thuần HTML/CSS/JavaScript và sử dụng bộ luật tạo prompt cục bộ. Chưa kết nối API AI hoặc hệ thống phân tích hình ảnh thực sự.
+Phiên bản hiện tại là frontend thuần HTML/CSS/JavaScript với Prompt Engine cục bộ. Đã có giao diện Studio, module navigation, reference-image preview, camera/lighting controls, prompt generation, copy/export. Chưa kết nối AI Vision/Image Generation backend.
 
-Có thể phát triển tiếp thành phiên bản V2 với:
+Lộ trình V3 backend:
+- AI Vision phân tích ảnh
+- Image generation / editing
+- Preserve architecture / furniture
+- Project history
+- Prompt Library
+- Authentication / storage
+- AI provider routing
+
+Có thể phát triển tiếp với:
 - tải ảnh căn phòng
 - phân tích không gian bằng AI
 - nhận diện vật liệu
